@@ -11,6 +11,9 @@ class SBElementArray
   def [](value)
     self.objectWithName(value)
   end
+  def second
+    self.objectAtIndex(1)
+  end
 end
 
 #get the running system preferences process
@@ -35,13 +38,14 @@ end
 def select_IO_device(io_device_name)
   scroll_area = @tab_group.scrollAreas.first
   outputTable = scroll_area.tables.first
-  outputTable.rows.each do |row|
-    if row.textFields.first.value.get == io_device_name
-      row.selected = "true"
-      puts "selecting #{row.textFields.first.value.get}"
-      break
-    end
+  the_row  = outputTable.rows.detect{|row| row.textFields.first.value.get.strip == io_device_name }
+  the_row.selected = "true" if 
+  `say "dack"` if the_row
+  unless the_row
+    outputTable.rows.first.selected = true
+    `say "no device found"`  
   end
+  
 end
   
 my_preferred_output_device = "Audioengine D1"
@@ -62,7 +66,7 @@ select_IO_device(my_preferred_output_device)
 #   SystemPreferencesApplicationNo = 'no  ' /* Do not save the file. */,
 #   SystemPreferencesApplicationYes = 'yes ' /* Save the file. */
 # };
-@sys_prefs.quitSaving(2)
+#@sys_prefs.quitSaving(2)
 
 
 

@@ -47,7 +47,7 @@ end
 def select_IO_device(io_device_name)
   scroll_area = @tab_group.scrollAreas.first
   outputTable = scroll_area.tables.first
-  the_row  = outputTable.rows.detect{|row| row.textFields.first.value.get == io_device_name }
+  the_row  = outputTable.rows.detect{|row| row.textFields.first.value.get.strip == io_device_name }
   the_row.selected = "true" if the_row
   `say "jobrah"` if the_row
 end
