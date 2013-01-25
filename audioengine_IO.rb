@@ -44,22 +44,17 @@ def select_IO_device(io_device_name)
   end
 end
   
-#my_preferred_input_device = "Internal microphone"
-my_preferred_input_device = "Jabra PRO 9470"
+my_preferred_output_device = "Audioengine D1"
 
 INPUT_SCOPE = "Input"
 OUTPUT_SCOPE = "Output"
 
 #open the system preferences app, sound pane
 select_sound_preference_window(@pref_process)
-#select Input setup tab
-select_IO_scope_tab(INPUT_SCOPE)
-#set the device for Input
-select_IO_device(my_preferred_input_device)
 #select the Output setup tab
 select_IO_scope_tab(OUTPUT_SCOPE)
 #set the device for Output
-select_IO_device(my_preferred_input_device)
+select_IO_device(my_preferred_output_device)
 
 # from generated file
 # enum SystemPreferencesApplicationSavo {
