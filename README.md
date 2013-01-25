@@ -1,6 +1,12 @@
 MacRubyAutomation
 =================
 
+*getting started*
+
+    rvm install macruby
+
+
+
 various scripts for automating common tasks 
 
 - audioengine_IO  switches the current audio device to the
