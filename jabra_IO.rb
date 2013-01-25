@@ -7,6 +7,18 @@ framework "ScriptingBridge"
 
 sys_events = SBApplication.applicationWithBundleIdentifier("com.apple.systemevents")
 
+@skype = SBApplication.applicationWithBundleIdentifier("com.skype.skype")
+
+
+
+# tell application "Skype"
+#   activate
+#   -- send command "SET AUDIO_OUT Logitech Wireless Headset H760" script name "Applescript"
+#   -- send command "SET AUDIO_IN Logitech Wireless Headset H760" script name "Applescript"
+#   send command "SET AUDIO_OUT Logitech G330 Headset" script name "Applescript"
+#   send command "SET AUDIO_IN Logitech G330 Headset" script name "Applescript"
+# end tell
+
 class SBElementArray
   def [](value)
     self.objectWithName(value)
@@ -39,6 +51,13 @@ def select_IO_device(io_device_name)
   the_row.selected = "true" if the_row
   `say "jobrah"` if the_row
 end
+
+def set_skype_IO_to(io_device_name)
+  @skype.activate()
+  @skype.sendCommand("SET AUDIO_OUT #{io_device_name}", :scriptName => "Applescript")
+  @skype.sendCommand("SET AUDIO_IN #{io_device_name}", :scriptName => "Applescript")
+  @skype.sendCommand("SET RINGER #{io_device_name}", :scriptName => "Applescript")
+end
   
 #my_preferred_input_device = "Internal microphone"
 my_preferred_input_device = "Jabra PRO 9470"
@@ -56,6 +75,8 @@ select_IO_device(my_preferred_input_device)
 select_IO_scope_tab(OUTPUT_SCOPE)
 #set the device for Output
 select_IO_device(my_preferred_input_device)
+#now make skype use the same
+set_skype_IO_to(my_preferred_input_device)
 
 # from generated file
 # enum SystemPreferencesApplicationSavo {
@@ -64,6 +85,11 @@ select_IO_device(my_preferred_input_device)
 #   SystemPreferencesApplicationYes = 'yes ' /* Save the file. */
 # };
 @sys_prefs.quitSaving(2)
+
+
+
+
+
 
 
 
