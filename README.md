@@ -21,7 +21,7 @@ C++ compilers through environment variables.
 
 Then you should be able to do a normal macruby install
 
-    rvm install macruby
+    rvm install macruby-head
 
 
 
